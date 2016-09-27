@@ -1,0 +1,52 @@
+conf t
+int f0/0.10
+en dot 10
+ip add 163.180.27.1 255.255.255.192
+exit
+int f0/0.20
+en dot 20
+ip add 163.180.27.65 255.255.255.224 
+exit
+int f0/0.30
+en dot 30
+ip add 163.180.27.96 25.255.255.224 
+exit
+
+int f0/1.10
+en dot 10
+ip add 163.180.20.1 255.255.255.0
+exit
+int f0/1.20
+en dot 20
+ip add 163.180.21.1 255.255.255.128 
+exit
+int f0/1.30
+en dot 30
+ip add 163.180.21.129 255.255.255.128 
+exit
+
+int f1/0.10
+en dot 10
+ip add 163.180.27.129 255.255.255.192
+exit
+int f1/0.20
+en dot 20
+ip add 163.180.27.193 255.255.255.224
+exit
+int f1/0.30
+en dot 30
+ip add 163.180.27.225 255.255.255.224 
+exit
+
+int f1/1.10
+en dot 10
+ip add 163.180.26.1 255.255.255.128
+exit
+int f1/1.20
+en dot 20
+ip add 163.180.26.129 255.255.255.192
+exit
+int f1/1.30
+en dot 30
+ip add 163.180.26.193 255.255.255.192
+exit

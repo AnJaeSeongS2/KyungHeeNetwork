@@ -1,0 +1,74 @@
+L3 Switch
+
+enable
+conf t
+vlan 10
+name Student
+vlan 20
+name Faculty
+vlan 30
+vtp mode server
+vtp domain sam
+vtp pass mas
+int f0/1
+swit trunk encap dot1q
+swit trunk allow vlan all
+swit mode trunk
+exit
+int f0/2
+swit trunk encap dot1q
+swit trunk allow vlan all
+swit mode trunk
+exit
+int vlan 10
+ip add 163.180.10.1 255.255.255.0
+int vlan 20
+ip add 163.180.20.1 255.255.255.0
+int vlan 30
+ip add 163.180.30.1 255.255.255.0
+exit
+ip routing
+exit
+
+
+
+
+Access switch
+enable
+conf t
+int f0/24
+swit trunk allow vlan all
+swit mode trunk
+vtp mode client
+vtp domain sam
+vtp password mas
+int f0/1
+swit mode acc
+swit acc vlan 10
+int f0/2
+swit mode acc
+swit acc vlan 20
+int f0/3
+swit mode acc
+swit acc vlan 30
+exit
+
+
+Switch2
+en
+conf t
+int f0/24
+swit mode trunk
+vtp mode client
+vtp domain sam
+vtp password mas
+int f0/1
+swit mode acc
+swit acc vlan 10
+int f0/2
+swit mode acc
+swit acc vlan 20
+int f0/3
+swit mode acc
+swit acc vlan 30
+exit

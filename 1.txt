@@ -1,0 +1,73 @@
+no network 163.180.18.0 0.0.1.255 area 1
+no network 163.180.24.0 0.0.1.255 area 1
+no network 163.180.28.0 0.0.0.127 area 1
+no network 163.180.16.0 0.0.1.255 area 1
+no network 163.180.29.0 0.0.0.63 area 1
+no network 163.180.29.64 0.0.0.31 area 1
+no network 163.180.99.0 0.0.0.255 area 1
+
+
+
+no network 163.180.29.112 0.0.0.15 area 1
+no network 163.180.20.0 0.0.1.255 area 1
+no network 163.180.27.0 0.0.0.127 area 1
+no network 163.180.28.128 0.0.0.127 area 1
+no network 163.180.22.0 0.0.1.255 area 1
+
+
+no network 163.180.0.0 0.0.7.255 area 1
+no network 163.180.8.0 0.0.7.255 area 1
+no network 163.180.27.128 0.0.0.127 area 1
+no network 163.180.26.0 0.0.0.255 area 1
+
+
+vlan 10
+name Student
+vlan 20
+name Faculty
+vlan 30
+name Manage
+vlan 11
+name Student1
+vlan 21
+name Faculty1
+vlan 31
+name Manage1
+int range f0/1-20
+span por
+swit mode acc
+swit acc vlan 10
+end
+sh vlan
+
+
+vlan 11
+name Student1
+vlan 21
+name Faculty1
+vlan 31
+name Manage1
+int range f0/1-20
+span por
+swit mode acc
+swit acc vlan 21
+end
+sh vlan
+
+
+vlan 10
+name Student
+vlan 20
+name Faculty
+vlan 30
+name Manage
+int range f0/1-10
+span por
+swit mode acc
+swit acc vlan 20
+int range f0/11-20
+span por
+swit mode acc
+swit acc vlan 30
+end
+sh vlan

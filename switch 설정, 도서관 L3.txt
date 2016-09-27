@@ -1,0 +1,140 @@
+µµ¼­°ü L3
+
+en
+conf t
+vlan 10
+name Student
+vlan 20
+name Faculty
+vlan 30
+name Manager
+vlan 11
+name Student1
+vlan 21
+name Faculty1
+vlan 31
+name Manager1
+vlan 12
+name Student2
+vlan 22
+name Faculty2
+vlan 32
+name Manager2
+vlan 13
+name Student3
+vlan 23
+name Faculty3
+vlan 33
+name Manager3
+vlan 14
+name Student4
+vlan 24
+name Faculty4
+vlan 34
+name Manager4
+vlan 15
+name Student5
+vlan 25
+name Faculty5
+vlan 35
+name Manager5
+
+vtp mode server
+vtp domain sam1
+vtp pass mas
+int f0/4
+swit trunk encap dot1q
+swit trunk allow vlan all
+swit mode trunk
+int vlan 10
+ip add 163.180.18.1 255.255.255.0
+int vlan 20
+ip add 163.180.19.1 255.255.255.128
+int vlan 30
+ip add 163.180.19.129 255.255.255.128
+int vlan 11
+ip add 163.180.29.1 255.255.255.224
+int vlan 21
+ip add 163.180.29.33 255.255.255.240
+int vlan 31
+ip add 163.180.29.49 255.255.255.240
+int vlan 12
+ip add 163.180.29.65 255.255.255.248
+int vlan 22
+ip add 163.180.29.73 255.255.255.252
+int vlan 32
+ip add 163.180.29.77 255.255.255.252
+int vlan 13
+ip add 163.180.16.1 255.255.255.0
+int vlan 23
+ip add 163.180.17.1 255.255.255.128
+int vlan 33
+ip add 163.180.17.129 255.255.255.128
+int vlan 14
+ip add 163.180.28.1 255.255.255.192
+int vlan 24
+ip add 163.180.28.65 255.255.255.224
+int vlan 34
+ip add 163.180.28.97 255.255.255.224
+int vlan 15
+ip add 163.180.24.1 255.255.255.0
+int vlan 25
+ip add 163.180.25.1 255.255.255.128
+int vlan 35
+ip add 163.180.25.129 255.255.255.128
+exit
+ip routing
+exit
+
+
+
+Dist-SW
+en
+conf t
+int range f0/23-24
+swit trunk allow vlan all
+swit mode trunk
+vtp mode client
+vtp domain sam
+vtp password mas
+int range f0/1-10
+swit mode trunk
+end
+sh vlan
+
+
+Access switch 1
+enable
+conf t
+int range f0/23-24
+swit trunk allow vlan all
+swit mode trunk
+vtp mode client
+vtp domain sam
+vtp password mas
+int range f0/1-20
+swit mode acc
+swit acc vlan 10
+end
+sh vlan
+
+
+Access switch 2
+enable
+conf t
+int range f0/23-24
+swit trunk allow vlan all
+swit mode trunk
+vtp mode client
+vtp domain sam
+vtp password mas
+int range f0/1-10
+swit mode acc
+swit acc vlan 21
+exit
+int range f0/11-20
+swit mode acc
+swit acc vlan 31
+end
+sh vlan
+
